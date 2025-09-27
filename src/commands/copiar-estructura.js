@@ -147,6 +147,9 @@ function getServidorOrigen(interaction, servidorId, frasesCubanas) {
                     });
                     mapaCategorias.set(categoria.id, nuevaCategoria.id);
                     creados++;
+                    
+                    // Delay para evitar rate limiting
+                    await new Promise(resolve => setTimeout(resolve, 500));
                 } catch (error) {
                     console.error(`Error creando categoría ${categoria.name}:`, error);
                     errores++;
@@ -170,12 +173,15 @@ function getServidorOrigen(interaction, servidorId, frasesCubanas) {
     
                 await servidorDestino.channels.create(opciones);
                 creados++;
+                
+                // Delay para evitar rate limiting
+                await new Promise(resolve => setTimeout(resolve, 500));
             } catch (error) {
                 console.error(`Error creando canal ${canal.name}:`, error);
                 errores++;
             }
         }
-    
+
         // Crear canales de voz
         for (const canal of canalesVozOrigen.values()) {
             try {
@@ -185,13 +191,16 @@ function getServidorOrigen(interaction, servidorId, frasesCubanas) {
                     userLimit: canal.userLimit,
                     position: canal.position
                 };
-    
+
                 if (incluirCategorias && canal.parent && mapaCategorias.has(canal.parent.id)) {
                     opciones.parent = mapaCategorias.get(canal.parent.id);
                 }
-    
+
                 await servidorDestino.channels.create(opciones);
                 creados++;
+                
+                // Delay para evitar rate limiting
+                await new Promise(resolve => setTimeout(resolve, 500));
             } catch (error) {
                 console.error(`Error creando canal de voz ${canal.name}:`, error);
                 errores++;
