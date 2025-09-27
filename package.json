@@ -1,0 +1,24 @@
+{
+  "name": "discord-bot-completo",
+  "version": "1.0.0",
+  "description": "Bot de Discord completo con todas las funcionalidades - crear/modificar canales, roles, moderación y más",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["discord", "bot", "nodejs", "discordjs", "moderacion", "administracion"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.11.0"
+  }
+}
