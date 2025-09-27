@@ -155,7 +155,7 @@ module.exports = {
                 }
             }
 
-            // Crear canales por categoría
+            // Crear canales por categoría con delay para evitar rate limiting
             const categoriasCanales = {
                 'battlefield': '🎯 BATTLEFIELD SAGA',
                 'populares': '🎮 JUEGOS POPULARES', 
@@ -188,6 +188,9 @@ module.exports = {
 
                         await interaction.guild.channels.create(opciones);
                         creados++;
+                        
+                        // Pequeño delay para evitar rate limiting
+                        await new Promise(resolve => setTimeout(resolve, 100));
                     } catch (error) {
                         console.error(`Error creando canal ${canal.nombre}:`, error);
                         errores++;
@@ -206,7 +209,7 @@ module.exports = {
         } catch (error) {
             console.error('Error creando estructura gaming:', error);
             await interaction.editReply({
-                content: `${frasesCubanas.getRandomFrase()} Algo salió mal creando la estructura gaming, mi loco.\n\n**Error:** ${error.message}`,
+                content: `${frasesCubanas.getRandomFrase()} Algo salió mal creando la estructura gaming, mi loco. \n\n**Posibles causas:**\n• Falta de permisos para crear canales\n• Límite de canales alcanzado\n• Rate limiting de Discord\n\n**Error:** ${error.message}`,
                 ephemeral: true
             });
         }
