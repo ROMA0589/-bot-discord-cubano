@@ -3,16 +3,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 require('dotenv').config();
 
-// Crear cliente con todos los intents necesarios para máxima funcionalidad
+// Crear cliente con intents básicos (sin los que requieren verificación)
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildModeration,
         GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildPresences,
         GatewayIntentBits.GuildMessageReactions,
         GatewayIntentBits.DirectMessages
     ]
