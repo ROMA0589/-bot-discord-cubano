@@ -37,7 +37,7 @@ module.exports = {
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageRoles)) {
             return interaction.reply({
                 content: '❌ No tengo permisos para gestionar roles.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -57,7 +57,7 @@ module.exports = {
                 } else {
                     return interaction.reply({
                         content: '❌ Color inválido. Usa formato hexadecimal (ej: #ff0000).',
-                        ephemeral: true
+                        flags: 64
                     });
                 }
             }
@@ -97,7 +97,7 @@ module.exports = {
 
             await interaction.reply({
                 content: errorMessage,
-                ephemeral: true
+                flags: 64
             });
         }
     }

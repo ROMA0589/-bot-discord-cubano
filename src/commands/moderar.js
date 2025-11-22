@@ -96,7 +96,7 @@ async function handleBan(interaction) {
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.BanMembers)) {
         return interaction.reply({
             content: '❌ No tengo permisos para banear miembros.',
-            ephemeral: true
+            flags: 64
         });
     }
 
@@ -106,7 +106,7 @@ async function handleBan(interaction) {
         if (miembro.roles.highest.position >= interaction.member.roles.highest.position) {
             return interaction.reply({
                 content: '❌ No puedes banear a este usuario porque tiene un rol igual o superior al tuyo.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -132,7 +132,7 @@ async function handleBan(interaction) {
         console.error('Error baneando usuario:', error);
         await interaction.reply({
             content: '❌ Error al banear el usuario. Verifica que tengo los permisos necesarios.',
-            ephemeral: true
+            flags: 64
         });
     }
 }
@@ -144,7 +144,7 @@ async function handleKick(interaction) {
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.KickMembers)) {
         return interaction.reply({
             content: '❌ No tengo permisos para expulsar miembros.',
-            ephemeral: true
+            flags: 64
         });
     }
 
@@ -154,7 +154,7 @@ async function handleKick(interaction) {
         if (miembro.roles.highest.position >= interaction.member.roles.highest.position) {
             return interaction.reply({
                 content: '❌ No puedes expulsar a este usuario porque tiene un rol igual o superior al tuyo.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -177,7 +177,7 @@ async function handleKick(interaction) {
         console.error('Error expulsando usuario:', error);
         await interaction.reply({
             content: '❌ Error al expulsar el usuario.',
-            ephemeral: true
+            flags: 64
         });
     }
 }
@@ -190,7 +190,7 @@ async function handleTimeout(interaction) {
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ModerateMembers)) {
         return interaction.reply({
             content: '❌ No tengo permisos para moderar miembros.',
-            ephemeral: true
+            flags: 64
         });
     }
 
@@ -200,7 +200,7 @@ async function handleTimeout(interaction) {
         if (miembro.roles.highest.position >= interaction.member.roles.highest.position) {
             return interaction.reply({
                 content: '❌ No puedes aplicar timeout a este usuario.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -225,7 +225,7 @@ async function handleTimeout(interaction) {
         console.error('Error aplicando timeout:', error);
         await interaction.reply({
             content: '❌ Error al aplicar timeout.',
-            ephemeral: true
+            flags: 64
         });
     }
 }
@@ -237,7 +237,7 @@ async function handleClear(interaction) {
     if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageMessages)) {
         return interaction.reply({
             content: '❌ No tengo permisos para gestionar mensajes.',
-            ephemeral: true
+            flags: 64
         });
     }
 
@@ -262,13 +262,13 @@ async function handleClear(interaction) {
             timestamp: new Date().toISOString()
         };
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], flags: 64 });
 
     } catch (error) {
         console.error('Error limpiando mensajes:', error);
         await interaction.reply({
             content: '❌ Error al limpiar mensajes. Los mensajes de más de 14 días no se pueden eliminar en masa.',
-            ephemeral: true
+            flags: 64
         });
     }
 }

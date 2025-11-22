@@ -22,7 +22,7 @@ module.exports = {
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
             return interaction.reply({
                 content: '❌ No tengo permisos para gestionar canales.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -64,7 +64,7 @@ module.exports = {
         const response = await interaction.reply({
             embeds: [embed],
             components: [row],
-            ephemeral: true
+            flags: 64
         });
 
         try {
@@ -116,14 +116,16 @@ module.exports = {
                 await interaction.editReply({
                     content: '❌ Tiempo agotado. Eliminación cancelada.',
                     embeds: [],
-                    components: []
+                    components: [],
+                    flags: 64
                 });
             } else {
                 console.error('Error eliminando canal:', error);
                 await interaction.editReply({
                     content: '❌ Error al eliminar el canal.',
                     embeds: [],
-                    components: []
+                    components: [],
+                    flags: 64
                 });
             }
         }

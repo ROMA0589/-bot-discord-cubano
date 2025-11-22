@@ -66,7 +66,7 @@ module.exports = {
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageChannels)) {
             return interaction.reply({
                 content: '❌ No tengo permisos para gestionar canales.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -82,7 +82,7 @@ module.exports = {
             if (Object.keys(modificaciones).length === 0) {
                 return interaction.reply({
                     content: '❌ No se especificaron modificaciones válidas.',
-                    ephemeral: true
+                    flags: 64
                 });
             }
 
@@ -118,7 +118,7 @@ module.exports = {
 
             await interaction.reply({
                 content: errorMessage,
-                ephemeral: true
+                flags: 64
             });
         }
     }

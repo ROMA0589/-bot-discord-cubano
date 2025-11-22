@@ -36,7 +36,7 @@ module.exports = {
         if (!interaction.guild.members.me.permissions.has(PermissionFlagsBits.ManageRoles)) {
             return interaction.reply({
                 content: '❌ No tengo permisos para gestionar roles.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -45,7 +45,7 @@ module.exports = {
         if (!miembro) {
             return interaction.reply({
                 content: '❌ El usuario no se encuentra en este servidor.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -56,14 +56,14 @@ module.exports = {
         if (rol.position >= botRolMasAlto.position) {
             return interaction.reply({
                 content: '❌ No puedo gestionar este rol porque está por encima de mi rol más alto.',
-                ephemeral: true
+                flags: 64
             });
         }
 
         if (rol.position >= autorRolMasAlto.position && interaction.user.id !== interaction.guild.ownerId) {
             return interaction.reply({
                 content: '❌ No puedes gestionar este rol porque está por encima de tu rol más alto.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -75,7 +75,7 @@ module.exports = {
                 if (miembro.roles.cache.has(rol.id)) {
                     return interaction.reply({
                         content: `❌ ${usuario.tag} ya tiene el rol ${rol.name}.`,
-                        ephemeral: true
+                        flags: 64
                     });
                 }
                 
@@ -86,7 +86,7 @@ module.exports = {
                 if (!miembro.roles.cache.has(rol.id)) {
                     return interaction.reply({
                         content: `❌ ${usuario.tag} no tiene el rol ${rol.name}.`,
-                        ephemeral: true
+                        flags: 64
                     });
                 }
                 
@@ -124,7 +124,7 @@ module.exports = {
 
             await interaction.reply({
                 content: errorMessage,
-                ephemeral: true
+                flags: 64
             });
         }
     }

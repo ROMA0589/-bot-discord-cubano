@@ -72,10 +72,10 @@ module.exports = {
     
             } catch (error) {
                 console.error('Error copiando estructura:', error);
-                await interaction.editReply({
-                    content: `${frasesCubanas.getRandomFrase()} Algo salió mal copiando la estructura, mi loco. Revisa que tengo permisos y que el ID del servidor sea correcto.\n\n**Error:** ${error.message}`,
-                    ephemeral: true
-                });
+                    await interaction.editReply({
+                        content: `${frasesCubanas.getRandomFrase()} Algo salió mal copiando la estructura, mi loco. Revisa que tengo permisos y que el ID del servidor sea correcto.\n\n**Error:** ${error.message}`,
+                        flags: 64
+                    });
             }
         },
 };
@@ -86,7 +86,7 @@ function getServidorOrigen(interaction, servidorId, frasesCubanas) {
         if (!servidorOrigen) {
             interaction.editReply({
                 content: `${frasesCubanas.getRandomFrase()} No puedo acceder a ese servidor, mi pana. Asegúrate de que el bot esté en ambos servidores y que el ID sea correcto.`,
-                ephemeral: true
+                flags: 64
             });
             return null;
         }
@@ -127,7 +127,8 @@ function getServidorOrigen(interaction, servidorId, frasesCubanas) {
     
     async function mostrarVistaPrevia(interaction, resumen, frasesCubanas) {
         await interaction.editReply({
-            content: resumen + `\n${frasesCubanas.getRandomFrase()} Ahí tienes la estructura, mi loco. Para copiarla de verdad, ejecuta el comando sin la opción \`solo_vista_previa\`.`
+            content: resumen + `\n${frasesCubanas.getRandomFrase()} Ahí tienes la estructura, mi loco. Para copiarla de verdad, ejecuta el comando sin la opción \`solo_vista_previa\`.`,
+            flags: 64
         });
     }
     

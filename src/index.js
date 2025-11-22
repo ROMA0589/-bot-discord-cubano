@@ -3,12 +3,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 require('dotenv').config();
 
-// Crear cliente con intents básicos (sin los que requieren verificación)
+// Crear cliente con intents necesarios para bienvenidas
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers, // ¡NECESARIO para detectar nuevos miembros!
         GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildMessageReactions,
         GatewayIntentBits.DirectMessages
@@ -65,19 +66,27 @@ client.on(Events.InteractionCreate, async interaction => {
         await command.execute(interaction);
     } catch (error) {
         console.error(`Error ejecutando ${interaction.commandName}:`, error);
-        
         const errorMessage = {
-            content: '❌ Hubo un error al ejecutar este comando.',
-            ephemeral: true
+            content: `❌ Hubo un error al ejecutar este comando.\n\n**Detalles:** ${error.message || 'Error desconocido'}`,
+            flags: 64
         };
-
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp(errorMessage);
-        } else {
+        // Solo responde si no se ha respondido antes
+        if (!interaction.replied && !interaction.deferred) {
             await interaction.reply(errorMessage);
+        } else {
+            await interaction.followUp(errorMessage);
         }
     }
 });
 
 // Iniciar sesión del bot
 client.login(process.env.DISCORD_TOKEN);
+// Responder a mensajes directos (DM) con frases cubanas
+const frasesCubanas = require('./utils/frases-cubanas');
+client.on(Events.MessageCreate, async message => {
+    // Solo responder si es un DM y no es de un bot
+    if (message.channel.type === 1 && !message.author.bot) {
+        const frase = frasesCubanas.obtenerFrase('saludos');
+        await message.reply(`${frase} 🇨🇺\n\nSi quieres ver los comandos, úsalos en un servidor o escribe /ayuda.`);
+    }
+});
