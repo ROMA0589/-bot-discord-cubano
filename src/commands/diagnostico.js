@@ -63,7 +63,7 @@ module.exports = {
                 diagnostico += `✅ **Todo parece estar bien** - Los comandos deberían funcionar\n`;
             }
 
-            diagnostico += `\n${frasesCubanas.getRandomFrase()}`;
+            // ...eliminado getRandomFrase, solo usar obtenerFrase
             diagnostico += `\n${obtenerFrase('saludos')}`;
 
             await interaction.editReply({
