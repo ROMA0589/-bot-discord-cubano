@@ -17,7 +17,7 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     async execute(interaction) {
-        const frasesCubanas = require('../utils/frases-cubanas');
+        const { obtenerFrase } = require('../utils/frases-cubanas');
         
         const categoria = interaction.options.getString('categoria');
 
@@ -73,7 +73,7 @@ module.exports = {
             });
 
             await interaction.editReply({
-                content: `🚀 ¡Empezando a crear canales gaming! ${frasesCubanas.getRandomFrase()}\n\n${resumen}`
+                content: `🚀 ¡Empezando a crear canales gaming! ${obtenerFrase('saludos')}\n\n${resumen}`
             });
 
             let creados = 0;
@@ -108,8 +108,8 @@ module.exports = {
             }
 
             const mensaje = errores > 0 
-                ? `¡Listo mi pana! Se crearon **${creados}** canales gaming con **${errores}** errores. ${frasesCubanas.getRandomFrase()}`
-                : `¡Perfecto! Se crearon **${creados}** canales gaming sin problemas. ${frasesCubanas.getRandomFrase()}`;
+                ? `¡Listo mi pana! Se crearon **${creados}** canales gaming con **${errores}** errores. ${obtenerFrase('errores')}`
+                : `¡Perfecto! Se crearon **${creados}** canales gaming sin problemas. ${obtenerFrase('exitosas')}`;
 
             await interaction.editReply({
                 content: `## ✅ Canales Gaming Creados\n\n${mensaje}\n\n🎮 **¡A jugar se ha dicho!** Los canales están listos para usar. 🇨🇺`
@@ -118,7 +118,7 @@ module.exports = {
         } catch (error) {
             console.error('Error creando canales gaming:', error);
             await interaction.editReply({
-                content: `${frasesCubanas.getRandomFrase()} Algo salió mal, mi loco.\n\n**Posibles causas:**\n• No tienes permisos de administrador\n• El bot no tiene permisos para crear canales\n• El servidor alcanzó el límite de canales\n\n**Error:** ${error.message}`,
+                content: `${obtenerFrase('errores')} Algo salió mal, mi loco.\n\n**Posibles causas:**\n• No tienes permisos de administrador\n• El bot no tiene permisos para crear canales\n• El servidor alcanzó el límite de canales\n\n**Error:** ${error.message}`,
                 flags: 64
             });
         }

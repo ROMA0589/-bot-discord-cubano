@@ -19,7 +19,7 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels),
 
     async execute(interaction) {
-        const frasesCubanas = require('../utils/frases-cubanas');
+        const { obtenerFrase } = require('../utils/frases-cubanas');
         
         const nombre = interaction.options.getString('nombre');
         const tipo = interaction.options.getString('tipo');
@@ -28,7 +28,7 @@ module.exports = {
 
         try {
             await interaction.editReply({
-                content: `🧪 Creando canal de prueba: **${nombre}** (${tipo === 'texto' ? 'texto' : 'voz'})\n\n${frasesCubanas.getRandomFrase()}`
+                content: `🧪 Creando canal de prueba: **${nombre}** (${tipo === 'texto' ? 'texto' : 'voz'})\n\n${obtenerFrase('saludos')}`
             });
 
             const opciones = {
@@ -47,7 +47,7 @@ module.exports = {
             const nuevoCanal = await interaction.guild.channels.create(opciones);
 
             await interaction.editReply({
-                content: `## ✅ ¡Canal creado exitosamente!\n\n🎉 **${nombre}** fue creado sin problemas, mi pana.\n\n📍 **Canal:** ${nuevoCanal}\n💭 **Tipo:** ${tipo === 'texto' ? 'Texto 💬' : 'Voz 🔊'}\n\n${frasesCubanas.getRandomFrase()}`
+                content: `## ✅ ¡Canal creado exitosamente!\n\n🎉 **${nombre}** fue creado sin problemas, mi pana.\n\n📍 **Canal:** ${nuevoCanal}\n💭 **Tipo:** ${tipo === 'texto' ? 'Texto 💬' : 'Voz 🔊'}\n\n${obtenerFrase('exitosas')}`
             });
 
         } catch (error) {
@@ -64,7 +64,7 @@ module.exports = {
             }
 
             await interaction.editReply({
-                content: `❌ **Error creando el canal**\n\n${frasesCubanas.getRandomFrase()} Algo salió mal, mi loco.\n\n**Causa:** ${mensajeError}\n**Código:** ${error.code || 'N/A'}\n**Detalle:** ${error.message}`,
+                content: `❌ **Error creando el canal**\n\n${obtenerFrase('errores')} Algo salió mal, mi loco.\n\n**Causa:** ${mensajeError}\n**Código:** ${error.code || 'N/A'}\n**Detalle:** ${error.message}`,
                 flags: 64
             });
         }

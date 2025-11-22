@@ -7,7 +7,7 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     async execute(interaction) {
-        const frasesCubanas = require('../utils/frases-cubanas');
+        const { obtenerFrase } = require('../utils/frases-cubanas');
 
         await interaction.deferReply();
 
@@ -64,6 +64,7 @@ module.exports = {
             }
 
             diagnostico += `\n${frasesCubanas.getRandomFrase()}`;
+            diagnostico += `\n${obtenerFrase('saludos')}`;
 
             await interaction.editReply({
                 content: diagnostico
@@ -72,7 +73,7 @@ module.exports = {
         } catch (error) {
             console.error('Error en diagnóstico:', error);
             await interaction.editReply({
-                content: `❌ **Error en el diagnóstico**\n\n${frasesCubanas.getRandomFrase()} Algo raro está pasando, mi loco.\n\n**Error:** ${error.message}`,
+                content: `❌ **Error en el diagnóstico**\n\n${obtenerFrase('errores')} Algo raro está pasando, mi loco.\n\n**Error:** ${error.message}`,
                 flags: 64
             });
         }
