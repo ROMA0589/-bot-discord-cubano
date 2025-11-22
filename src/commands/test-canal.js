@@ -65,7 +65,7 @@ module.exports = {
 
             await interaction.editReply({
                 content: `❌ **Error creando el canal**\n\n${frasesCubanas.getRandomFrase()} Algo salió mal, mi loco.\n\n**Causa:** ${mensajeError}\n**Código:** ${error.code || 'N/A'}\n**Detalle:** ${error.message}`,
-                ephemeral: true
+                flags: 64
             });
         }
     },

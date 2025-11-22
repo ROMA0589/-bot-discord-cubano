@@ -23,7 +23,7 @@ module.exports = {
                 .setFooter({ text: obtenerFrase('saludos') + ' • Bot Cubano', iconURL: interaction.client.user.displayAvatarURL() })
                 .setTimestamp();
 
-            await interaction.reply({ embeds: [embed], ephemeral: true });
+            await interaction.reply({ embeds: [embed], flags: 64 });
         } catch (error) {
             // Solo responder si no se ha respondido antes
             if (!interaction.replied && !interaction.deferred) {
@@ -34,7 +34,7 @@ module.exports = {
                     .addFields({ name: 'Detalles', value: error.message || 'Error desconocido', inline: false })
                     .setFooter({ text: 'Bot Cubano • Error', iconURL: interaction.client.user.displayAvatarURL() })
                     .setTimestamp();
-                await interaction.reply({ embeds: [embedError], ephemeral: true });
+                await interaction.reply({ embeds: [embedError], flags: 64 });
             } else {
                 // Si ya se respondió, edita la respuesta
                 await interaction.editReply({ content: `❌ Error en /ayuda: ${error.message || 'Error desconocido'}` });

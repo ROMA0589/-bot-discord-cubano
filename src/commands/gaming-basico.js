@@ -119,7 +119,7 @@ module.exports = {
             console.error('Error creando canales gaming:', error);
             await interaction.editReply({
                 content: `${frasesCubanas.getRandomFrase()} Algo salió mal, mi loco.\n\n**Posibles causas:**\n• No tienes permisos de administrador\n• El bot no tiene permisos para crear canales\n• El servidor alcanzó el límite de canales\n\n**Error:** ${error.message}`,
-                ephemeral: true
+                flags: 64
             });
         }
     },

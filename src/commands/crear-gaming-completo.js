@@ -210,7 +210,7 @@ module.exports = {
             console.error('Error creando estructura gaming:', error);
             await interaction.editReply({
                 content: `${frasesCubanas.getRandomFrase()} Algo salió mal creando la estructura gaming, mi loco. \n\n**Posibles causas:**\n• Falta de permisos para crear canales\n• Límite de canales alcanzado\n• Rate limiting de Discord\n\n**Error:** ${error.message}`,
-                ephemeral: true
+                flags: 64
             });
         }
     },

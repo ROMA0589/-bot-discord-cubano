@@ -73,7 +73,7 @@ module.exports = {
             console.error('Error en diagnóstico:', error);
             await interaction.editReply({
                 content: `❌ **Error en el diagnóstico**\n\n${frasesCubanas.getRandomFrase()} Algo raro está pasando, mi loco.\n\n**Error:** ${error.message}`,
-                ephemeral: true
+                flags: 64
             });
         }
     },

@@ -78,7 +78,7 @@ module.exports = {
             console.error('Error creando canal:', error);
             await interaction.reply({
                 content: '❌ Error al crear el canal. Verifica que tengo los permisos necesarios.',
-                ephemeral: true
+                flags: 64
             });
         }
     }
