@@ -8,12 +8,20 @@
     "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["discord", "bot", "nodejs", "discordjs", "moderacion", "administracion"],
+  "keywords": [
+    "discord",
+    "bot",
+    "nodejs",
+    "discordjs",
+    "moderacion",
+    "administracion"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
