@@ -17,6 +17,7 @@ module.exports = {
                     { name: '🎮 Gaming y diversión', value: '`/gaming-basico` - Canales gaming básicos\n`/que-tal` - Saludo cubano\n`/bienvenida` - Configura mensajes automáticos', inline: false },
                     { name: '🛡️ Moderación y roles', value: '`/moderar` - Comandos de moderación\n`/asignar-rol` - Asigna o remueve roles\n`/auto-rol` - Rol automático para nuevos miembros', inline: false },
                     { name: '📋 Utilidad y diagnóstico', value: '`/info` - Información del bot\n`/diagnostico` - Diagnóstico completo\n`/test-canal` - Prueba de creación de canal', inline: false },
+                        { name: '📰 Noticias y actualidad', value: '`/noticias` - Muestra las últimas noticias de videojuegos (IGN)', inline: false },
                     { name: '📖 ¿Cómo empezar?', value: '1️⃣ Usa `/ayuda` para ver todos los comandos\n2️⃣ Lee las reglas del servidor\n3️⃣ Preséntate en #presentaciones\n4️⃣ Usa `/asignar-rol` para obtener tus roles\n5️⃣ ¡Participa y disfruta!', inline: false },
                     { name: '🔗 Enlaces útiles', value: '[Invita el bot](https://discord.com/oauth2/authorize?client_id=1421480599469953177&permissions=8&scope=bot%20applications.commands) | [GitHub](https://github.com/ROMA0589/-bot-discord-cubano)', inline: false }
                 )
